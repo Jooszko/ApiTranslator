@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ApiTranslate"
         mc:Ignorable="d"
-        Title="TłumaczApi" Height="600" Width="900"
+        Title="TranslatorApi" Height="600" Width="900"
         WindowStartupLocation="CenterScreen"
         Background="#F0F2F5">
     <Window.Resources>
@@ -83,12 +83,12 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,20">
-                    <TextBlock Text="Tłumacz" 
+                    <TextBlock Text="Translator" 
                                FontSize="28" 
                                FontWeight="Bold" 
                                Foreground="#343A40"/>
                     
-                    <TextBlock Text="Wybierz języki i wpisz swój text" 
+                    <TextBlock Text="Choose a language and write the text you want to transalate" 
                                FontSize="14" 
                                Foreground="#868E96" 
                                Margin="2,5,0,0"/>
@@ -111,11 +111,7 @@
                                   FontSize="14"
                                   VerticalContentAlignment="Center"
                                   SelectedIndex="0">
-                            
-                            <ComboBoxItem Content="Polski"/>
-                            <ComboBoxItem Content="Angielski"/>
-                            <ComboBoxItem Content="Hiszpański"/>
-                            <ComboBoxItem Content="Niemiecki"/>
+                           
                         </ComboBox>
                     </Border>
 
@@ -134,10 +130,7 @@
                                   FontSize="14"
                                   VerticalContentAlignment="Center"
                                   SelectedIndex="0">
-                            <ComboBoxItem Content="Angielski"/>
-                            <ComboBoxItem Content="Hiszpański"/>
-                            <ComboBoxItem Content="Niemiecki"/>
-                            <ComboBoxItem Content="Polski"/>
+
                         </ComboBox>
                     </Border>
                 </Grid>
@@ -166,7 +159,7 @@
 
                 <Button Grid.Row="4" 
                         x:Name="TranslateButton"
-                        Content="PRZETŁUMACZ TEKST" 
+                        Content="Translate" 
                         Style="{StaticResource CustomButton}"
                         HorizontalAlignment="Center"
                         Width="200" Cursor="Hand"
