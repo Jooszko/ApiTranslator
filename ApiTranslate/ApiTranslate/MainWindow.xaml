@@ -1,0 +1,178 @@
+﻿<Window x:Class="ApiTranslate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApiTranslate"
+        mc:Ignorable="d"
+        Title="TłumaczApi" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F2F5">
+    <Window.Resources>
+        <Style x:Key="CustomButton" TargetType="Button">
+            <Setter Property="Background" Value="#4C6EF5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" 
+                                Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3B5BDB"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CustomTextBox" TargetType="TextBox">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="#E9ECEF" 
+                                BorderThickness="1" 
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ComboContainer" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E9ECEF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="5"/>
+            
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Border Background="White" 
+                CornerRadius="15" 
+                Margin="40"
+                VerticalAlignment="Stretch">
+
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="270" ShadowDepth="5" Opacity="0.1" BlurRadius="20"/>
+            </Border.Effect>
+
+            <Grid Margin="30" Cursor="">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,20">
+                    <TextBlock Text="Tłumacz" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="#343A40"/>
+                    
+                    <TextBlock Text="Wybierz języki i wpisz swój text" 
+                               FontSize="14" 
+                               Foreground="#868E96" 
+                               Margin="2,5,0,0"/>
+                </StackPanel>
+
+                <Border Grid.Row="1" Height="1" Background="#E9ECEF" Margin="0,0,0,20"/>
+
+                <Grid Grid.Row="2" Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Style="{StaticResource ComboContainer}" Grid.Column="0">
+                        <ComboBox x:Name="SourceLangComboBox" 
+                                  BorderThickness="0" 
+                                  Background="Transparent" 
+                                  Padding="10"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  SelectedIndex="0">
+                            
+                            <ComboBoxItem Content="Polski"/>
+                            <ComboBoxItem Content="Angielski"/>
+                            <ComboBoxItem Content="Hiszpański"/>
+                            <ComboBoxItem Content="Niemiecki"/>
+                        </ComboBox>
+                    </Border>
+
+                    <TextBlock Grid.Column="1" 
+                               Text="➔" 
+                               FontSize="20" 
+                               Foreground="#ADB5BD"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+
+                    <Border Style="{StaticResource ComboContainer}" Grid.Column="2">
+                        <ComboBox x:Name="TargetLangComboBox" 
+                                  BorderThickness="0" 
+                                  Background="Transparent" 
+                                  Padding="10"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Angielski"/>
+                            <ComboBoxItem Content="Hiszpański"/>
+                            <ComboBoxItem Content="Niemiecki"/>
+                            <ComboBoxItem Content="Polski"/>
+                        </ComboBox>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="3" Margin="0,0,0,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0" 
+                             x:Name="InputTextBox"
+                             Style="{StaticResource CustomTextBox}"
+                             TextWrapping="Wrap" 
+                             AcceptsReturn="True"/>
+
+                    <TextBox Grid.Column="2" 
+                             x:Name="OutputTextBox"
+                             Style="{StaticResource CustomTextBox}"
+                             TextWrapping="Wrap" 
+                             IsReadOnly="True"
+                             Background="#F1F3F5"
+                             Foreground="#495057"/>
+                </Grid>
+
+                <Button Grid.Row="4" 
+                        x:Name="TranslateButton"
+                        Content="PRZETŁUMACZ TEKST" 
+                        Style="{StaticResource CustomButton}"
+                        HorizontalAlignment="Center"
+                        Width="200" Cursor="Hand"
+                        Click="TranslateButton_Click"
+                        />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
