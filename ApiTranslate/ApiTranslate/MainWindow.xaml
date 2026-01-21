@@ -26,10 +26,16 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#3B5BDB"/>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#ADB5BD"/>
+                    <Setter Property="Foreground" Value="#E9ECEF"/>
+                    <Setter Property="Cursor" Value="Arrow"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -110,7 +116,13 @@
                                   Padding="10"
                                   FontSize="14"
                                   VerticalContentAlignment="Center"
-                                  SelectedIndex="0">
+                                  SelectedIndex="0"
+                                  
+                                  IsEditable="True"
+                                  StaysOpenOnEdit="True"
+                                  IsTextSearchEnabled="False"
+                                  KeyUp="SourceLangComboBox_KeyUp"
+                                  >
                            
                         </ComboBox>
                     </Border>
@@ -129,7 +141,16 @@
                                   Padding="10"
                                   FontSize="14"
                                   VerticalContentAlignment="Center"
-                                  SelectedIndex="0">
+                                  SelectedIndex="0"
+                                  
+                                  IsEditable="True"
+                                  StaysOpenOnEdit="True"
+                                  IsTextSearchEnabled="False"
+                                  KeyUp="TargetLangComboBox_KeyUp"
+                                  
+                                  >
+                            
+                                   
 
                         </ComboBox>
                     </Border>
@@ -157,7 +178,13 @@
                              Foreground="#495057"/>
                 </Grid>
 
-                <Button Grid.Row="4" 
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button  
                         x:Name="TranslateButton"
                         Content="Translate" 
                         Style="{StaticResource CustomButton}"
@@ -165,6 +192,19 @@
                         Width="200" Cursor="Hand"
                         Click="TranslateButton_Click"
                         />
+
+                    <Button  Grid.Column="1"
+                         x:Name="SoundButton"
+                         Content="Listen" 
+                         Style="{StaticResource CustomButton}"
+                         HorizontalAlignment="Center"
+                         Width="200" Cursor="Hand"
+                         Click="SoundButton_Click"
+                         />
+
+                </Grid>
+                
+
             </Grid>
         </Border>
     </Grid>

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\JoszkoStudia\5sem\Cloud AI\projekt\ApiTranslate\ApiTranslate\obj\Debug\net8.0-windows\
+C:\Users\paska\Desktop\Moje pliki\Studia\Cloud AI Platforms\ApiTranslatorProject\ApiTranslate\ApiTranslate\obj\Debug\net8.0-windows\
 ApiTranslate
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\JoszkoStudia\5sem\Cloud AI\projekt\ApiTranslate\ApiTranslate\App.xaml
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Users\paska\Desktop\Moje pliki\Studia\Cloud AI Platforms\ApiTranslatorProject\ApiTranslate\ApiTranslate\App.xaml
 11407045341
 
 6-2110367963
-198-688555687
+203-45369563
 MainWindow.xaml;
 
 False

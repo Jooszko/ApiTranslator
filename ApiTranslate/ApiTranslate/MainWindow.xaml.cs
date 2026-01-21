@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.CognitiveServices.Speech;
+using System.ComponentModel;
 
 namespace ApiTranslate
 {
@@ -20,7 +22,8 @@ namespace ApiTranslate
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly string subscriptionKey = "klucz_do_API";
+        //Translate API credentials
+        private readonly string subscriptionKey = "translate-key";
         private static readonly string endpoint = "https://api.cognitive.microsofttranslator.com/";
         private static readonly string location = "francecentral";
 
@@ -28,14 +31,24 @@ namespace ApiTranslate
 
         private Dictionary<string, LanguageDetails> availableLanguages;
 
+        //Speech API credentials
+        private static readonly string speechKey = "text-to-speech-key";
+        private static readonly string speechRegion = "francecentral";
+
+        private ICollectionView sourceLangView;
+        private ICollectionView targetLangView;
+
         public MainWindow()
         {
             InitializeComponent();
 
             LoadLanguagesAsync();
 
+            SoundButton.IsEnabled = false;
+
         }
 
+        //Loading languages into the ComboBoxes
         private async void LoadLanguagesAsync()
         {
             try
@@ -68,12 +81,15 @@ namespace ApiTranslate
                         DisplayName = "Detect Language (Auto)"
                     });
 
-                    SourceLangComboBox.ItemsSource = sourceList;
+                    sourceLangView = CollectionViewSource.GetDefaultView(sourceList);
+                    targetLangView = CollectionViewSource.GetDefaultView(targetList);
+
+                    SourceLangComboBox.ItemsSource = sourceLangView;
                     SourceLangComboBox.DisplayMemberPath = "DisplayName";
                     SourceLangComboBox.SelectedValuePath = "Code";
                     SourceLangComboBox.SelectedIndex = 0; 
 
-                    TargetLangComboBox.ItemsSource = targetList;
+                    TargetLangComboBox.ItemsSource = targetLangView;
                     TargetLangComboBox.DisplayMemberPath = "DisplayName";
                     TargetLangComboBox.SelectedValuePath = "Code";
 
@@ -94,21 +110,59 @@ namespace ApiTranslate
         }
 
 
+        //Functions for ComboBox Filtering
+        private void SourceLangComboBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            FilterLanguages(sourceLangView, SourceLangComboBox.Text);
+            SourceLangComboBox.IsDropDownOpen = true;
+        }
+
+        private void TargetLangComboBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            FilterLanguages(targetLangView, TargetLangComboBox.Text);
+            TargetLangComboBox.IsDropDownOpen = true;
+        }
+        private void FilterLanguages(ICollectionView view, string filterText)
+        {
+            if (view == null) return;
+
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                view.Filter = null;
+                return;
+            }
+
+            view.Filter = item =>
+            {
+                if (item is LanguageItem langItem)
+                {
+                    return langItem.DisplayName.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+                }
+                return false;
+            };
+        }
+
+        //Triggering the translate function
         private async void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
             string? fromLangCode = SourceLangComboBox.SelectedValue?.ToString();
             string? toLangCode = TargetLangComboBox.SelectedValue?.ToString();
 
+            if (toLangCode == null)
+            {
+                OutputTextBox.Text = "Choose a correct language from the list";
+                return;
+            }
 
             string? textToTranslate = InputTextBox.Text;
 
+            SoundButton.IsEnabled = false;
 
             if (string.IsNullOrWhiteSpace(textToTranslate))
             {
                 OutputTextBox.Text = "Input the text to translate";
                 return;
             }
-
 
             TranslateButton.Content = "Translating...";
             TranslateButton.IsEnabled = false;
@@ -117,10 +171,14 @@ namespace ApiTranslate
             {
                 string translatedText = await TranslateTextAsync(textToTranslate, fromLangCode, toLangCode);
                 OutputTextBox.Text = translatedText;
+
+                SoundButton.IsEnabled = true;
             }
             catch (Exception ex)
             {
                 OutputTextBox.Text = "Error during translation: " + ex.Message;
+
+                SoundButton.IsEnabled = false;
             }
             finally
             {
@@ -129,6 +187,7 @@ namespace ApiTranslate
             }
         }
 
+        //Main translate function
         private async Task<string> TranslateTextAsync(string text, string fromLanguage, string toLanguage)
         {
             string route = $"/translate?api-version=3.0&to={toLanguage}";
@@ -177,8 +236,50 @@ namespace ApiTranslate
             }
         }
 
+        //Triggering the text-to-speech function
+        private async void SoundButton_Click(object sender, RoutedEventArgs e)
+        {
+            string textToRead = OutputTextBox.Text;
 
-        // Klasy pomocnicze do mapowania JSONa z Azure na obiekty C#
+            if (string.IsNullOrWhiteSpace(textToRead)) return;
+
+            string? sourceCode = SourceLangComboBox.SelectedValue?.ToString();
+            bool isAutoDetectMode = string.IsNullOrEmpty(sourceCode);
+
+            if (isAutoDetectMode && textToRead.StartsWith("["))
+            {
+                int endBracketIndex = textToRead.IndexOf(']');
+
+                if (endBracketIndex >= 0)
+                {
+                    textToRead = textToRead.Substring(endBracketIndex + 1).Trim();
+                }
+            }
+
+            SoundButton.IsEnabled = false;
+
+            try
+            {
+                var config = SpeechConfig.FromSubscription(speechKey, speechRegion);
+
+                config.SpeechSynthesisVoiceName = "en-US-AvaMultilingualNeural";
+
+                using (var synthesizer = new SpeechSynthesizer(config))
+                {
+                    await synthesizer.SpeakTextAsync(textToRead);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd: {ex.Message}");
+            }
+            finally
+            {
+                SoundButton.IsEnabled = true;
+            }
+        }
+
+        //Helper classes for JSON deserialization
 
         public class LanguagesResponse
         {
@@ -217,6 +318,6 @@ namespace ApiTranslate
             public string To { get; set; }
         }
 
-
+       
     }
 }

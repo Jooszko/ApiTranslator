@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\JoszkoStudia\\5sem\\Cloud AI\\projekt\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj": {}
+    "C:\\Users\\paska\\Desktop\\Moje pliki\\Studia\\Cloud AI Platforms\\ApiTranslatorProject\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj": {}
   },
   "projects": {
-    "D:\\JoszkoStudia\\5sem\\Cloud AI\\projekt\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj": {
+    "C:\\Users\\paska\\Desktop\\Moje pliki\\Studia\\Cloud AI Platforms\\ApiTranslatorProject\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\JoszkoStudia\\5sem\\Cloud AI\\projekt\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj",
+        "projectUniqueName": "C:\\Users\\paska\\Desktop\\Moje pliki\\Studia\\Cloud AI Platforms\\ApiTranslatorProject\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj",
         "projectName": "ApiTranslate",
-        "projectPath": "D:\\JoszkoStudia\\5sem\\Cloud AI\\projekt\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj",
-        "packagesPath": "C:\\Users\\jonas\\.nuget\\packages\\",
-        "outputPath": "D:\\JoszkoStudia\\5sem\\Cloud AI\\projekt\\ApiTranslate\\ApiTranslate\\obj\\",
+        "projectPath": "C:\\Users\\paska\\Desktop\\Moje pliki\\Studia\\Cloud AI Platforms\\ApiTranslatorProject\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj",
+        "packagesPath": "C:\\Users\\paska\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\paska\\Desktop\\Moje pliki\\Studia\\Cloud AI Platforms\\ApiTranslatorProject\\ApiTranslate\\ApiTranslate\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jonas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\paska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +38,23 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Microsoft.CognitiveServices.Speech": {
+              "target": "Package",
+              "version": "[1.47.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -58,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

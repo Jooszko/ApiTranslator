@@ -1,8 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "99+mlyLu9bZrSGTYH2WAmmAFupc8xnr+VAl5WgLK4JI7DRacWvgAORZbJkqLGNsMl3lskdveINazOkTdn6VJgQ==",
+  "dgSpecHash": "b0UQEPmj4n4=",
   "success": true,
-  "projectFilePath": "D:\\JoszkoStudia\\5sem\\Cloud AI\\projekt\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\paska\\Desktop\\Moje pliki\\Studia\\Cloud AI Platforms\\ApiTranslatorProject\\ApiTranslate\\ApiTranslate\\ApiTranslate.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\paska\\.nuget\\packages\\azure.core\\1.44.1\\azure.core.1.44.1.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\microsoft.cognitiveservices.speech\\1.47.0\\microsoft.cognitiveservices.speech.1.47.0.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\system.clientmodel\\1.1.0\\system.clientmodel.1.1.0.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\system.memory.data\\6.0.0\\system.memory.data.6.0.0.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\system.text.json\\6.0.10\\system.text.json.6.0.10.nupkg.sha512",
+    "C:\\Users\\paska\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
   "logs": []
 }
